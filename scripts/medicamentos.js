@@ -1,0 +1,375 @@
+// Lista de medicamentos para autocompletado
+var medicamentos = [
+  { name: "AGUJA BIOPSIA (SISTEMA DE AGUJAS PARA BIOPSIA Y/O ASPIRACIÓN DE TEJIDOS BLANDOS Y ÓSEO) 18G*9cm "},
+  { name: "AGUJA BIOPSIA (SISTEMA DE AGUJAS PARA BIOPSIA Y/O ASPIRACIÓN DE TEJIDOS BLANDOS Y ÓSEO) 18G*9cm "},
+  { name: "AGUJA BIOPSIA MEDULA OSEA TL 8GX4 REF DBMNJO804TL "},
+  { name: "AGUJA BIOPSIA OSEA REF PJ0810 PUNTA JAMSHIDI "},
+  { name: "AGUJA DE ASPIRACION DE MEDULA OSEA REF PIP1510/50 "},
+  { name: "AGUJA ESPINOCAN 20G x 3.50IN (0.90mm x 88mm) "},
+  { name: "AGUJA ESPINOCAN 20x90mm "},
+  { name: "AGUJA ESPINOCAN 22G x 1.50IN (0.70mm x 40mm) "},
+  { name: "AGUJA ESPINOCAN 25G x 90mm "},
+  { name: "AGUJA ESPINOCAN 26G x 90mm "},
+  { name: "AGUJA ESPINOCAN 27 x 3 1/2 "},
+  { name: "AGUJA ESPINOCAN 27 x 90 mm "},
+  { name: "AGUJA HIPODERMICA '20 x1 "},
+  { name: "AGUJA HIPODERMICA '23 x 1 "},
+  { name: "AGUJA HIPODERMICA 16G * 1 1/2 "},
+  { name: "AGUJA HIPODERMICA 18 x 1 1/2 "},
+  { name: "AGUJA HIPODERMICA 21 x 1 ½ "},
+  { name: "AGUJA HIPODERMICA 23 x 1 1/2 "},
+  { name: "AGUJA HIPODERMICA 25 x 3 1/2 "},
+  { name: "AGUJA PARA LAPICERO DE INSULINA 31G X5MM "},
+  { name: "APOSITO 6.5X7cm "},
+  { name: "APOSITO AQUACEL DE PLATA AG+ EXTRA 15 CM X 15 CM "},
+  { name: "APOSITO AQUACEL EXTRA 15 CM X 15 CM "},
+  { name: "APOSITO DUODERM EXTRA THIN 10*10cm "},
+  { name: "APOSITO DUODERM EXTRA THIN 15CM X 15CM "},
+  { name: "APOSITO FOAM LITE CONVATEC 15x15 cm "},
+  { name: "APOSITO OCULAR PEDIÁTRICO "},
+  { name: "APOSITO TEGADER 10X12CM "},
+  { name: "APOSITO TEGADERM CON PAD 6*10 cm "},
+  { name: "APOSITO TRANSPARENTE 6X7CM "},
+  { name: "APOSITO TRANSPARENTE ESTERIL "},
+  { name: "AQUACEL AG SURGICAL 9CM 25 CM REF 412011 "},
+  { name: "BARRERA PROTECTORA COLOSTOMIA DURAHESIVE N° 70mm (FLEXIBLE) "},
+  { name: "BARRERA PROTECTORA COLOSTOMIA N° 57mm (FLEXIBLE) "},
+  { name: "BARRERA PROTECTORA COLOSTOMIA N° 45mm (FLEXIBLE) "},
+  { name: "BARRERA PROTECTORA COLOSTOMIA N° 32mm (FLEXIBLE) "},
+  { name: "CATÉTER VENOSO CENTRAL BILUMEN PEDIÁTRICO 4Fr * 5cm (22Ga-22Ga) "},
+  { name: "CATÉTER VENOSO CENTRAL BILUMEN PEDIÁTRICO 4Fr * 8cm (22Ga-22Ga) "},
+  { name: "BIOCONECTOR "},
+  { name: "BOLSA DRENABLE OPACA DE COLOSTOMIA N° 32mm "},
+  { name: "BOLSA DRENABLE OPACA DE COLOSTOMIA N° 57mm "},
+  { name: "BOLSA DE COLOSTOMIA 57 mm "},
+  { name: "BOLSA DE OSTOMIA REF 22771 "},
+  { name: "BOLSA DRENABLE OPACA DE COLOSTOMIA N° 70mm "},
+  { name: "BOLSA DE NUTRICION ENTERAL '1500 Ml "},
+  { name: "BOLSA PARA DRENAJE DE LIQUIDOS TC-600 "},
+  { name: "BOLSA RECOLECTORA DE ORINA (RECORIN) "},
+  { name: "BOLSAS DRENAJE URINARIO - CYSTOFLO ADULTO 2000ML "},
+  { name: "BOLSAS DRENAJE URINARIO - CYSTOFLO PEDIATRICO 500ML "},
+  { name: "BOTON MICKEY 16FR X 1.5 CM "},
+  { name: "BOTON MICKEY PARA GASTROSTOMIA 12 FR X 1.0 CM "},
+  { name: "BOTON PARA GASTROSTOMIA 12 FR X 1.0 CM AVNOS/HYH "},
+  { name: "BOTON PARA GASTROSTOMIA MIC-KEY 20 FR X 2.5 CM REF 8140-20-2.5 AVANOS "},
+  { name: "BOTON PARA GASTROSTOMIA MIC-KEY 20 FR X 2.O CM REF 8140-20-2.0 AVANOS "},
+  { name: "CABESTRILLO PEDIATRICO "},
+  { name: "CANISTER X 500 ML "},
+  { name: "CANULA NASAL ADULTO "},
+  { name: "CANULA NASAL NEONATAL "},
+  { name: "CANULA NASAL PEDIATRICA "},
+  { name: "CATÉTER ALTO FLUJO DE ACCESO VENOSO DOBLE LUMEN 11Fr * 12cm "},
+  { name: "CATÉTER ALTO FLUJO DE ACCESO VENOSO DOBLE LUMEN 7Fr * 10cm "},
+  { name: "CATÉTER ALTO FLUJO DE ACCESO VENOSO DOBLE LUMEN 9Fr * 12cm "},
+  { name: "CATÉTER ARTERIAL N 22 "},
+  { name: "CATETER ARTERIAL '3 FR *20G*8 cm "},
+  { name: "CATETER BILUMEN DE INSERCCION PERIFERICA 16 FR X 70 CM (PICC "},
+  { name: "CATÉTER BILUMEN DE INSERCIÓN PERIFERICA 4Fr * 50cm (PICC) "},
+  { name: "CATETER CENTRAL INSERCION PERIFERICA (PICC) 17 g/4,5 fr x 60 cm "},
+  { name: "CATETER CON ELECTRODOS BIPOLARES(PARA MARCAPASOS) 5FR "},
+  { name: "CATÉTER DE ALTO FLUJO 6.5 FR "},
+  { name: "CATÉTER DE DIÁLISIS PERITONEAL COLA DE CERDO 15Fr * 40.25cm "},
+  { name: "CATÉTER DE DIÁLISIS PERITONEAL RECTO 15Fr * 37cm "},
+  { name: "CATETER DE DRENAJE CORTO MINI- PIGTAIL KDL2-0617H "},
+  { name: "CATETER DIALISIS PERITONEAL REF 8817278007 "},
+  { name: "CATETER EPICUTANEO 1 FR 28G  "},
+  { name: "CATETER EPICUTANEO 2 FR MONOLUMEN 24G REF 2184.00 "},
+  { name: "CATETER INTRAVENOSO (YELCO) 14G x 1 1/4 "},
+  { name: "CATETER INTRAVENOSO (YELCO) 16G x 1 2 "},
+  { name: "CATETER INTRAVENOSO (YELCO) 18G x 1 1/4 "},
+  { name: "CATETER INTRAVENOSO (YELCO) '20G x 1 1/4 "},
+  { name: "CATETER INTRAVENOSO (YELCO) 22G x 1 1/4 "},
+  { name: "CATETER INTRAVENOSO (YELCO) 24G x 1 3/4 CORTO  "},
+  { name: "CATETER INTRAVENOSO (YELCO) 24G x 1 1/4 LARGO "},
+  { name: "CATÉTER MAHURKAR RECTO 13.5Fr/Ch (4.5mm) * 19.5cm "},
+  { name: "CATETER MONOLUMEN DE INSERCCION PERIFERICA 16 FR X 70 CM (PICC "},
+  { name: "CATETER PERICRANEAL N° 23G "},
+  { name: "CATETER PERICRANEAL N° 21G "},
+  { name: "CATETER PERITONEAL PARA HIDROCEFALIA "},
+  { name: "CATETER QUINTO VENTRICULO "},
+  { name: "CATETER TRILUMEN 7FR X 20 CM "},
+  { name: "CATETER UMBILICAL 3,5Fr - L38cm "},
+  { name: "CATETER UMBILICAL 5FR* 40 CM "},
+  { name: "CATETER URETRAL DOBLE J 3.7 FR X 16 CM "},
+  { name: "CATETER TRILUMEN 5.5 FR X 13 CM "},
+  { name: "CATÉTER VENOSO CENTRAL BILUMEN PEDIÁTRICO 4Fr * 13cm (22Ga-22Ga) "},
+  { name: "CATÉTER VENOSO CENTRAL BILUMEN PEDIÁTRICO 5Fr * 13cm (18G-20G) "},
+  { name: "CATÉTER VENTRICULAR PARA VALVULA HIDROCEFALIA "},
+  { name: "COLLAR TIPO FILADELFIA Talla S (ORTESIS RÍGIDA INMOVILIZADORA DE CUELLO) "},
+  { name: "CONECTOR EN Y 1/4 * 1/4 * 1/4 Sin Luer "},
+  { name: "CONECTOR EN Y 1/4 * 1/4 * 3/8 Sin Luer "},
+  { name: "CONECTOR RECTO 1/4 * 3/16 Sin Luer "},
+  { name: "DRENAJE DE HERIDAS HEMOVAC 19 FR "},
+  { name: "DRENES DE PENROSE ¼ SILICONADO "},
+  { name: "DUODERM HYDROACTIVE GEL REF 187987 "},
+  { name: "ELECTRODOS DE MONITOREO DE ELECTROCARDIOGRAFÍA - ELECTRODOS CONDUCTIVO (PEDIATRICO) "},
+  { name: "ELECTRODOS DE MONITOREO DE ELECTROCARDIOGRAFÍA - ELECTRODOS CONDUCTIVO (NEONATAL) "},
+  { name: "ELECTRODOS DE MONITOREO DE ELECTROCARDIOGRAFÍA - ELECTRODOS CONDUCTIVO (ADULTO) "},
+  { name: "ELIMINADOR (LIBERADOR) DE ADHESIVO NO IRRITANTE (SENSI-CARE TM) "},
+  { name: "EQUIPO BOMBA INFUSION (TERUMO) "},
+  { name: "EQUIPO BURETROL 150mL "},
+  { name: "EQUIPO DE ADMINISTRACION DE SOLUCIONES MICROGOTEO (MACROGOTEO) "},
+  { name: "EQUIPO DE TRANSFERENCIA PARA DIALISIS PERITONEAL "},
+  { name: "EQUIPO DE TRANSFUSION DE SANGRE "},
+  { name: "EQUIPO BOMBA INFUSION (FOTOSENSIBLE) "},
+  { name: "EQUIPO DE ADMINISTRACION DE SOLUCIONES MICROGOTEO (MICROGOTEO) "},
+  { name: "ESPECULO VAGINAL TALLA M "},
+  { name: "EXTENSION DE ANESTESIA ADULTO "},
+  { name: "EXTENSION DE ANESTESIA PEDIATRICA "},
+  { name: "EXTENSION LINEA DE MONITOREO 300cm/120 "},
+  { name: "EXTENSIÓN PARA MONITOREO DE PRESION (HEMODINAMIA) "},
+  { name: "FORMOL SOLUCION "},
+  { name: "GAFA DE FOTOTERAPIA PREMIER NARANJA "},
+  { name: "GAFA DE FOTOTERAPIA PREMIER AZUL  "},
+  { name: "GAFA DE FOTOTERAPIA PREMIER VERDE "},
+  { name: "GAFA DE FOTOTERAPIA T: S "},
+  { name: "GEL CONDUCTOR ULTRASONIDO BIOGEL 250CC "},
+  { name: "HOJA DE BISTURÍ # 10 "},
+  { name: "HOJA DE BISTURÌ # 22 "},
+  { name: "HOJA DE BISTURI #11 "},
+  { name: "HOJA DE BISTURI #15 "},
+  { name: "HOJA DE BISTURI #20 "},
+  { name: "HUMIDIFICADOR PARA OXIGENOTERAPIA "},
+  { name: "INHALOCAMARA ADULTO "},
+  { name: "INHALOCAMARA NEONATAL "},
+  { name: "INHALOCAMARA PEDIATRICA "},
+  { name: "JERINGA DESECHABLE 1ML "},
+  { name: "JERINGA DESECHABLE 3ML "},
+  { name: "JERINGA DESECHABLE 5ML "},
+  { name: "JERINGA DESECHABLE 10ML "},
+  { name: "JERINGA DESECHABLE 20ml "},
+  { name: "JERINGA DESECHABLE 50ML "},
+  { name: "JERINGA DE INSULINA X 30 UI "},
+  { name: "JERINGA DE INSULINA X 50 UI "},
+  { name: "JERINGA DE INSULINA X 100 UI "},
+  { name: "JERINGA PARA GASES "},
+  { name: "JERINGA PUNTA DE CATETER X 50ML "},
+  { name: "KIT DE GASTROSTOMIA 20 FR REF: 8630-20 "},
+  { name: "KIT DE GASTROSTOMIA Nº14FR "},
+  { name: "KIT DE JERINGA INSUFLADORA "},
+  { name: "KIT DE VENTURY "},
+  { name: "KIT DE VENTURY PEDIATRICO "},
+  { name: "KIT MASCARA NO INVASIVA TAMAÑO GRANDE (L) "},
+  { name: "kit mascara facial no invasiva tamaño Pequeña (M) "},
+  { name: "KIT PLASMAFERESIS TPE 2000 (ADULTO) "},
+  { name: "KIT TRANSDUCTOR SENCILLO "},
+  { name: "KIT VENTURY PEDIÁTRICO "},
+  { name: "LAPIZ ELECTROQUIRURGICO "},
+  { name: "LINEA DE MONITOREO MACHO/MACHO (EXTENSIONES PARA ADMINISTRACIÓN DE SOLUCIONES) 300cm /120 "},
+  { name: "LINEA DE PRESIÓN PRÓXIMAL "},
+  { name: "LINER 2000 ML "},
+  { name: "LINER DE SUCCION "},
+  { name: "LLAVE DE 3 VIAS  "},
+  { name: "MASCARA DE NO REINHALACION ADULTO "},
+  { name: "MASCARA De No REINHALACIÓN PEDIATRICA "},
+  { name: "MASCARA DE OXIGENO "},
+  { name: "MASCARA DE OXIGENO SIMPLE PARA ADULTO "},
+  { name: "MASCARA PARA NO REINHALACION ADULTO "},
+  { name: "MASCARA PARA NO REINHALACION PEDIATRICO "},
+  { name: "MASCARA PARA TRAQUEOSTOMÍA ADULTO "},
+  { name: "MASCARA PARA TRAQUEOSTOMÍA Pediatrica "},
+  { name: "MECHA NASAL ESTERIL "},
+  { name: "MICRONEBULIZADOR ADULTO "},
+  { name: "KIT MICRONEBULIZADOR NEONATAL "},
+  { name: "MICRONEBULIZADOR PEDIATRICO "},
+  { name: "CATETER EPICUTANEO TWINFLO '2 Fr 24G x 30 "},
+  { name: "NIPLE "},
+  { name: "PLACA PARA ELECTROBISTURI PEDIATRICO "},
+  { name: "PRESERVATIVOS "},
+  { name: "PROLENE SUTURA QUIRURGICA DE POLIPROPILENO (MONOFILAMENTO) ESTÉRIL, SINTÉTICO, NO ABSORBIBLE/SUTURA NO ABSORBIBLE 3-0 Ps-1 45cm "},
+  { name: "PROLENE SUTURA QUIRURGICA DE POLIPROPILENO (MONOFILAMENTO) ESTÉRIL, SINTÉTICO, NO ABSORBIBLE/SUTURA NO ABSORBIBLE 3-0 SC24 "},
+  { name: "RESERVORIO DE DRENAJE CERRADO 1/8 "},
+  { name: "RESERVORIO DE OMAYA REF: RE-2011 "},
+  { name: "RESUCITADOR NEO-TEE "},
+  { name: "SEDA 2/0 V-20 (AGUJA MEDIANA REDONDA 26 mm) "},
+  { name: "SEDA 3-0 SC-24 "},
+  { name: "SENSICARE BARRERA 50ML "},
+  { name: "SISTEMA DE DRENAJE (HEMOVAC) * 1/8 *400ml "},
+  { name: "SISTEMA DE DRENAJE PLEURAL (PLEUROVACK) "},
+  { name: "SISTEMA DE DRENAJE PARA HERIDAS (HEMOVAC) * 1/4 "},
+  { name: "SISTEMA DE MONITOREO PARA PRESIÓN INTRACRANEANA "},
+  { name: "SONDA AVANZADA A YEYUNO 14 FR 2.5 CM "},
+  { name: "SONDA DE SUCCION 8FR "},
+  { name: "SONDA DE SUCCION 10FR "},
+  { name: "SONDA DE SUCCION 12FR "},
+  { name: "SONDA DE SUCCION 14FR "},
+  { name: "SONDA DE SUCCIÓN 16FR "},
+  { name: "SONDA DE SUCCIÓN 6FR "},
+  { name: "SONDA FOLEY 2VIAS N°18 "},
+  { name: "SONDA FOLEY DE LATEX DOS VIAS FR 10 "},
+  { name: "SONDA FOLEY DE LATEX DOS VIAS FR 12 "},
+  { name: "SONDA FOLEY DE LATEX DOS VIAS FR 14 "},
+  { name: "SONDA FOLEY DE LATEX DOS VIAS FR 16 "},
+  { name: "SONDA FOLEY DE LATEX DOS VIAS FR 18 "},
+  { name: "SONDA FOLEY DE LATEX DOS VIAS FR 6 "},
+  { name: "SONDA FOLEY DE LATEX DOS VIAS FR 8 "},
+  { name: "SONDA FOLEY DE SILICONA DOS VIAS FR 10 "},
+  { name: "SONDA FOLEY DE SILICONA DOS VIAS FR 12 "},
+  { name: "SONDA FOLEY DE SILICONA DOS VIAS FR 8 "},
+  { name: "SONDA FOLEY SILICONADA DOS VIAS 6Fr "},
+  { name: "SONDA FOLEY SILICONADA DOS VIAS FR14 "},
+  { name: "SONDA GASTROSTOMIA Nª 14 "},
+  { name: "SONDA GASTROSTOMIA Nª 16 "},
+  { name: "SONDA NASOGASTRICA # 10 "},
+  { name: "SONDA NASOGASTRICA # 12FR "},
+  { name: "SONDA NASOGASTRICA # 14Fr "},
+  { name: "SONDA NASOGASTRICA # 18 "},
+  { name: "SONDA NASOGASTRICA # 16Fr "},
+  { name: "SONDA NASOGASTRICA # 8Fr "},
+  { name: "SONDA NASOGASTRICA 6FR "},
+  { name: "SONDA NELATON 10FR "},
+  { name: "SONDA NELATON 12 Fr "},
+  { name: "SONDA NELATON 16Fr "},
+  { name: "SONDA NELATON 20Fr "},
+  { name: "SONDA NELATON 4FR "},
+  { name: "SONDA NELATON 6FR "},
+  { name: "SONDA NELATON 8FR "},
+  { name: "SONDA NELATON N°14 "},
+  { name: "SONDA PUNTA TUGSTENO 12Fr (4,0mm) "},
+  { name: "SONDA PUNTA TUGSTENO 8Fr "},
+  { name: "SONDA DE SUCCION CERRADA 14FR "},
+  { name: "STOMAHESIVE PASTA "},
+  { name: "STOMAHESIVE POLVO 1 oZ "},
+  { name: "SURECAN 20 G X 15 (SET DE PROCESAMIENTO DE PLAQUETAS Y/O PLASMA) "},
+  { name: "SURECAN 22 G  (SET DE PROCESAMIENTO DE PLAQUETAS Y/O PLASMA) "},
+  { name: "VENDA ELASTICA 5*5 "},
+  { name: "TENSOPLAST REF 71545-00 "},
+  { name: "TRAMPA DE LUKENS REF9591 40CC "},
+  { name: "TUBO A TORAX N°14 "},
+  { name: "TUBO A TORAX N° 22 "},
+  { name: "TUBO A TORAX N° 24 "},
+  { name: "TUBO A TORAX N°10 "},
+  { name: "TUBO A TORAX N°16 "},
+  { name: "TUBO A TORAX N°20 "},
+  { name: "TUBO A TORAX N°28 "},
+  { name: "TUBO A TORAX N°30 "},
+  { name: "TUBO A TORAX N°32 "},
+  { name: "TUBO A TORAX N°8 "},
+  { name: "TUBO A TORAX Nª 12 "},
+  { name: "TUBO EN T DE LATEX "},
+  { name: "VENDA DE ALGODON 4X5 "},
+  { name: "VENDA DE ALGODON 5 X 5 ydAs "},
+  { name: "VENDA DE ALGODON 6X5 "},
+  { name: "VENDA DE GASA 6X5 "},
+  { name: "VENDA DE YESO 4X5 "},
+  { name: "VENDAD DE YESO 6X5 "},
+  { name: "VENDA ELASTICA 3,5 "},
+  { name: "VENDA ELASTICAS 4X5 "},
+  { name: "VENDA ELASTICA 6 X 5 "},
+  { name: "VENDA FIJA 4X5 "},
+  { name: "VENDA DE ALGODON 4X5 "},
+  { name: "VENDA DE ALGODON 6X5 "},
+  { name: "VENDA DE YESO 4X5 "},
+  { name: "VENDA DE YESO 6X5 "},
+  { name: "VENDA ELASTICAS 4X5 "},
+  { name: "VENDA FIJA 4X5 "},
+  { name: "VENDA FIJA 6 X 5 "},
+  { name: "VICRYL 4-0 45 CM P-3 AGUJA CORTANTE 13 MM "},
+  { name: "VICRYL 5-0 45 CM P-3 AGUJA CORTANTE "},
+  { name: "SAFGEL X 85 GR TUBO "},
+  { name: "FITOESTIMULINE X 60GR TUBO "},
+  { name: "FITOESTIMULINE HIDROGEL X 60GR TUBO "},
+  { name: "WESTCOHEX JABON AL 2% x 60ML "},
+  { name: "WESTCOHEX SOLUCION X 60ML "},
+  { name: "CATETER COOK 8FR X 30CM  "},
+
+
+];
+
+// Lista de entidades (EPS) para autocompletado
+var entidades = [
+  "ASOCIACION INDIGENA DEL CAUCA AIC EPS-I",
+  "ASMET SALUD EPS SAS",
+  "CAJACOPI EPS",
+  "CENTRO DE DIAGNOSTICO UROLOGICO CDU S.A.S",
+  "CENTRO MÉDICO DE ESPECIALISTAS C.M.E S.A. - CLINICA SANTILLANA",
+  "CENTRO ONCOLOGICO DEL CARIBE",
+  "CLINICA AVIDANTI MANIZALES",
+  "COLMEDICA MEDICINA PREPAGADA S A",
+  "COMPAÑÍA DE SEGUROS BOLÍVAR S.A.",
+  "COMPAÑÍA MUNDIAL DE SEGUROS",
+  "COMPENSAR EPS",
+  "COMPAÑÍA DE MEDICINA PREPAGADA COLSANITAS S.A.",
+  "COOSALUD EPS",
+  "ESM BATALLÓN ASPC NO. 8 'CACIQUE CALARCÀ” CALDAS",
+  "MALLAMAS EPS-I",
+  "MEDPLUS MEDICINA PREPAGADA S.A",
+  "NUEVA EPS CALDAS",
+  "SALUD TOTAL EPS-S S.A.",
+  "SANITAS EPS SAS",
+  "SURA EPS",
+  "SEGUROS DE VIDA SURAMERICANA 'PREPAGADA'",
+  "FUNDACIÓN UNIÓN PARA EL CONTROL DEL CÁNCER - UNICANCER",
+  "UNISALUD MANIZALES",
+  "UNISSER",
+];
+
+// Autocompletado para medicamentos y entidades
+function applyAutocomplete() {
+  // Autocompletar para medicamentos
+  $(".medicamento").autocomplete({
+    source: medicamentos.map((m) => m.name),
+    minLength: 2,
+  });
+
+  // Autocompletar para entidades (EPS)
+  $("#entidad").autocomplete({
+    source: entidades,
+    minLength: 2,
+  });
+}
+
+// Función para agregar una nueva fila
+function addRow() {
+  var rowCount = $("#medicamentosTable tr").length;
+  if (rowCount >= 12) {
+    alert("Se ha alcanzado el número máximo de medicamentos permitidos (12).");
+    return;
+  }
+
+  var newRow = `
+      <tr>
+          <td>${rowCount + 1}</td>
+          <td><input id="medicamento${rowCount + 1}" type="text" name="medicamento${rowCount + 1}" class="medicamento"></td>
+          <td><input type="number" name="cantidad${rowCount + 1}" required></td>
+          <td class="actions">
+              <button type="button" onclick="deleteRow(this)">❌</button>
+          </td>
+      </tr>
+  `;
+  $("#medicamentosTable").append(newRow);
+  applyAutocomplete(); // Aplicar autocompletar a la nueva fila
+}
+
+// Función para eliminar una fila
+function deleteRow(button) {
+  $(button).closest("tr").remove();
+  updateRowNumbers();
+}
+
+// Función para actualizar los números de fila después de eliminar una fila
+function updateRowNumbers() {
+  $("#medicamentosTable tr").each(function (index) {
+    $(this)
+      .find("td:first")
+      .text(index + 1);
+    $(this)
+      .find("input")
+      .each(function () {
+        var name = $(this).attr("name");
+        var id = $(this).attr("id");
+        var newName = name.replace(/\d+$/, "") + (index + 1);
+        var newId = id.replace(/\d+$/, "") + (index + 1);
+        $(this).attr("name", newName);
+        $(this).attr("id", newId);
+      });
+  });
+}
+
+// Ejecutar al cargar el documento
+$(document).ready(function () {
+  applyAutocomplete();
+  // Asegurarse de que solo se agregue una vez el evento de click
+  $("#addMedicamentoBtn").off("click").on("click", addRow);
+});

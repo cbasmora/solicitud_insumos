@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitud de Insumos</title>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Incluye jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Incluye jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="img/logo.png" alt="Logo de la empresa">
+            <div class="divider"></div>
+            <h1>SOLICITUD DE INSUMOS</h1>
+        </header>
+        <form id="medicalForm" action="generate_pdf.php" method="post" autocomplete="off"> 
+            <!-- Información del paciente -->
+            <div class="row">
+                <div class="col">
+                    <label for="numeroDocumento">Número de documento:</label>
+                    <input type="text" id="numeroDocumento" name="numeroDocumento" placeholder="Número sin puntos ni comas..." required onchange="buscarPaciente()" oninput="limpiarCaracteres(event)">
+                </div>
+                <div class="col">
+                    <label for="paciente">Nombre completo (Paciente):</label>
+                    <input type="text" id="paciente" name="paciente" required>
+                </div>
+
+
+                <div class="col">
+                    <label for="fecha">Fecha Solicitud:</label>
+                    <input type="date" id="fecha" name="fecha" required>
+                </div>
+                <div class="col">
+                    <label for="hora">Hora Solicitud:</label>
+                    <input type="time" id="hora" name="hora" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="tipoDocumento">Tipo de documento:</label>
+                    <select id="tipoDocumento" name="tipoDocumento" required>
+                        <option value="" selected disabled>-Seleccionar-</option>
+                        <option value="MS">Menor sin identificación</option>
+                        <option value="AS">Adulto sin identificación</option>
+                        <option value="TI">Tarjeta de Identidad</option>
+                        <option value="RC">Registro civil</option>
+                        <option value="PA">Pasaporte</option>
+                        <option value="PEP">Permiso Especial de Permanencia</option>
+                        <option value="CE">Cédula de extranjería</option>
+                        <option value="CC">Cédula de Ciudadanía</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="sexo">Sexo:</label>
+                    <select Type="text" id="sexo" name="sexo" required>
+                        <option value="" selected disabled>-Seleccionar-</option>
+                        <option value="Masculino">Masculino (M)</option>
+                        <option value="Femenino">Femenino (F)</option>
+                    </select>
+                </div>
+
+
+                <div class="col">
+                    <label for="fechaNacimiento">Fecha de nacimiento:</label>
+                    <input type="date" id="fechaNacimiento" name="fechaNacimiento" required onchange="calcularEdad()">
+                </div>
+                <div class="col">
+                    <label for="edad">Edad:</label>
+                    <input type="text" id="edad" name="edad" style="background-color: rgba(202, 202, 202, 0.418);" readonly>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="cama">Cama:</label>
+                    <input type="text" id="cama" name="cama" required>
+                </div>
+                <div class="col">
+                    <label for="servicio">Servicio:</label>
+                    <select id="servicio" name="servicio" required>
+                        <option value="" selected disabled>-Seleccionar-</option>
+                        <option value="Hospitalización">Hospitalización</option>
+                        <option value="Quirófano">Quirófano</option>
+                        <option value="UCI Pediátrica">UCI Pediátrica</option>
+                        <option value="UCI Neonatal">UCI Neonatal</option>
+                        <option value="Consulta Externa">Consulta Externa</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <label for="entidad">Entidad (EPS):</label>
+                    <input type="text" id="entidad" name="entidad" required>
+                </div>
+                <div class="col">
+                    <label for="tipo">Régimen:</label>
+                    <select id="tipo" name="tipo" required>
+                        <option value="" selected disabled>-Seleccionar-</option>
+                        <option value="Contributivo">Contributivo</option>
+                        <option value="Subsidiado">Subsidiado</option>
+                        <option value="Vinculado">Vinculado</option>
+                        <option value="Particular">Particular</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+            </div>
+            <!-- Medicamentos -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>ITEM</th>
+                        <th>NOMBRE DEL INSUMO</th>
+                        <th>CANTIDAD (C/U)</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="medicamentosTable">
+                    <tr>
+                        <td class="col-small">1</td>
+                        <td class="col-large"><input id="medicamento1" type="text" name="medicamento1" class="medicamento"></td>
+                        <td class="col-small"><input type="number" name="cantidad1" required></td>
+                        <td class="col-small actions">
+                            <button type="button" onclick="deleteRow(this)">❌</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="button" id="addMedicamentoBtn">+</button>
+            <br><br>
+            <!-- Nombre del solicitante -->
+            <div class="row">
+                <div class="col" style="background-color: #ffecb3; padding: 10px; border-radius: 5px; margin-bottom: 10px;">
+                    <label for="nombreSolicitante">Nombre del Solicitante:</label>
+                    <input type="text" placeholder="Nombre completo..." id="nombreSolicitante" name="nombreSolicitante" required>
+                </div>
+                <div class="col" style="background-color: #ffecb3; padding: 10px; border-radius: 5px; margin-bottom: 10px;">
+                    <label for="numeroSolicitante">N° Documento del Solicitante:</label>
+                    <input type="text" id="numeroSolicitante" placeholder="Número sin puntos ni comas..." name="numeroSolicitante" required>
+                </div>
+            </div>
+            <!-- Botón de generar PDF -->
+            <center>
+                <button type="submit" style="background-color: rgb(0, 128, 0); color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: box-shadow 0.3s ease, transform 0.2s ease; display: inline-flex; align-items: center;"
+                        onmousedown="this.style.transform='translateY(2px)';" onmouseup="this.style.transform='translateY(0px)';">
+                    <i class="fas fa-file" style="margin-right: 8px;"></i> <!-- Icono de PDF -->
+                    Generar PDF
+                </button>
+            </center>
+        </form>
+    </div>
+    <!-- Scripts al final para optimización -->
+    <script src="scripts/medicamentos.js"></script>
+    <script>
+        function calcularEdad() {
+            var fechaNacimiento = document.getElementById("fechaNacimiento").value;
+            var hoy = new Date();
+            var nacimiento = new Date(fechaNacimiento);
+
+            var edadAnios = hoy.getFullYear() - nacimiento.getFullYear();
+            var edadMeses = hoy.getMonth() - nacimiento.getMonth();
+            var edadDias = hoy.getDate() - nacimiento.getDate();
+
+            if (edadMeses < 0 || (edadMeses === 0 && edadDias < 0)) {
+                edadAnios--;
+                edadMeses += 12;
+            }
+            if (edadDias < 0) {
+                var ultimoDiaMesAnterior = new Date(hoy.getFullYear(), hoy.getMonth(), 0).getDate();
+                edadDias += ultimoDiaMesAnterior;
+                edadMeses--;
+            }
+
+            var edadTexto = '';
+            if (edadAnios > 0) {
+                edadTexto = edadAnios + " años";
+            } else if (edadMeses > 0) {
+                edadTexto = edadMeses + " meses";
+            } else if (edadDias >= 7) {
+                var edadSemanas = Math.floor(edadDias / 7);
+                edadTexto = edadSemanas + " semanas";
+            } else {
+                edadTexto = edadDias + " días";
+            }
+
+            document.getElementById("edad").value = edadTexto;
+        }
+    </script>
+    </script>
+    <script>
+        function buscarPaciente() {
+            var numeroDocumento = document.getElementById("numeroDocumento").value;
+        
+            // Realizar la petición AJAX
+            $.ajax({
+                url: 'buscar_paciente.php',
+                type: 'POST',
+                dataType: 'json',
+                data: { numeroDocumento: numeroDocumento },
+                success: function(data) {
+                    if (data.success) {
+                        // Actualizar los campos del formulario con los datos del paciente
+                        document.getElementById("paciente").value = data.paciente.nombre;
+                        document.getElementById("sexo").value = data.paciente.sexo;
+                        document.getElementById("tipoDocumento").value = data.paciente.tipo_documento;
+                        document.getElementById("fechaNacimiento").value = data.paciente.fecha_nacimiento;
+                        document.getElementById("entidad").value = data.paciente.entidad;
+                        document.getElementById("tipo").value = data.paciente.regimen;
+        
+                        // Calcular y actualizar la edad si es necesario
+                        calcularEdad();
+                    } else {
+                        alert('El paciente no está registrado en nuestra base de datos. Por favor, complete todos los campos del formulario. Utilizaremos esta información para generar automáticamente el encabezado de las próximas solicitudes.');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error al buscar paciente:', error);
+                }
+            });
+        }
+        </script>
+            <script>
+                function limpiarCaracteres(event) {
+                    const input = event.target;
+                    // Elimina puntos y comas
+                    input.value = input.value.replace(/[.,]/g, '');
+                }
+            </script>
+</body>
+</html>
