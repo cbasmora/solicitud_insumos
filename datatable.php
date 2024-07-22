@@ -17,6 +17,8 @@
             font-family: Arial, sans-serif;
             background-color: #f0f8ff;
             color: #333;
+            background-image: url('http://192.168.1.250:8080/devolucion_farmacia/img/fondo-medico-azul.png');
+            box-shadow: #333;
         }
         .container {
             width: 90%;

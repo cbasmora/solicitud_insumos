@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +14,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
+
 <body>
     <div class="container">
         <header>
@@ -20,12 +22,14 @@
             <div class="divider"></div>
             <h1>SOLICITUD DE INSUMOS</h1>
         </header>
-        <form id="medicalForm" action="generate_pdf.php" method="post" autocomplete="off"> 
+        <form id="medicalForm" action="generate_pdf.php" method="post" autocomplete="off">
             <!-- Información del paciente -->
             <div class="row">
                 <div class="col">
                     <label for="numeroDocumento">Número de documento:</label>
-                    <input type="text" id="numeroDocumento" name="numeroDocumento" placeholder="Número sin puntos ni comas..." required onchange="buscarPaciente()" oninput="limpiarCaracteres(event)">
+                    <input type="text" id="numeroDocumento" name="numeroDocumento"
+                        placeholder="Número sin puntos ni comas..." required onchange="buscarPaciente()"
+                        oninput="limpiarCaracteres(event)">
                 </div>
                 <div class="col">
                     <label for="paciente">Nombre completo (Paciente):</label>
@@ -73,7 +77,8 @@
                 </div>
                 <div class="col">
                     <label for="edad">Edad:</label>
-                    <input type="text" id="edad" name="edad" style="background-color: rgba(202, 202, 202, 0.418);" readonly>
+                    <input type="text" id="edad" name="edad" style="background-color: rgba(202, 202, 202, 0.418);"
+                        readonly>
                 </div>
             </div>
             <div class="row">
@@ -121,7 +126,8 @@
                 <tbody id="medicamentosTable">
                     <tr>
                         <td class="col-small">1</td>
-                        <td class="col-large"><input id="medicamento1" type="text" name="medicamento1" class="medicamento"></td>
+                        <td class="col-large"><input id="medicamento1" type="text" name="medicamento1"
+                                class="medicamento"></td>
                         <td class="col-small"><input type="number" name="cantidad1" required></td>
                         <td class="col-small actions">
                             <button type="button" onclick="deleteRow(this)">❌</button>
@@ -133,19 +139,25 @@
             <br><br>
             <!-- Nombre del solicitante -->
             <div class="row">
-                <div class="col" style="background-color: #ffecb3; padding: 10px; border-radius: 5px; margin-bottom: 10px;">
+                <div class="col"
+                    style="background-color: #ffecb3; padding: 10px; border-radius: 5px; margin-bottom: 10px;">
                     <label for="nombreSolicitante">Nombre del Solicitante:</label>
-                    <input type="text" placeholder="Nombre completo..." id="nombreSolicitante" name="nombreSolicitante" required>
+                    <input type="text" placeholder="Nombre completo..." id="nombreSolicitante" name="nombreSolicitante"
+                        required>
                 </div>
-                <div class="col" style="background-color: #ffecb3; padding: 10px; border-radius: 5px; margin-bottom: 10px;">
+                <div class="col"
+                    style="background-color: #ffecb3; padding: 10px; border-radius: 5px; margin-bottom: 10px;">
                     <label for="numeroSolicitante">N° Documento del Solicitante:</label>
-                    <input type="text" id="numeroSolicitante" placeholder="Número sin puntos ni comas..." name="numeroSolicitante" required>
+                    <input type="text" id="numeroSolicitante" placeholder="Número sin puntos ni comas..."
+                        name="numeroSolicitante" required>
                 </div>
             </div>
             <!-- Botón de generar PDF -->
             <center>
-                <button type="submit" style="background-color: rgb(0, 128, 0); color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: box-shadow 0.3s ease, transform 0.2s ease; display: inline-flex; align-items: center;"
-                        onmousedown="this.style.transform='translateY(2px)';" onmouseup="this.style.transform='translateY(0px)';">
+                <button type="submit"
+                    style="background-color: rgb(0, 128, 0); color: white; border: none; padding: 10px 20px; font-size: 16px; cursor: pointer; box-shadow: 0 4px 8px rgba(0,0,0,0.2); transition: box-shadow 0.3s ease, transform 0.2s ease; display: inline-flex; align-items: center;"
+                    onmousedown="this.style.transform='translateY(2px)';"
+                    onmouseup="this.style.transform='translateY(0px)';">
                     <i class="fas fa-file" style="margin-right: 8px;"></i> <!-- Icono de PDF -->
                     Generar PDF
                 </button>
@@ -193,14 +205,14 @@
     <script>
         function buscarPaciente() {
             var numeroDocumento = document.getElementById("numeroDocumento").value;
-        
+
             // Realizar la petición AJAX
             $.ajax({
                 url: 'buscar_paciente.php',
                 type: 'POST',
                 dataType: 'json',
                 data: { numeroDocumento: numeroDocumento },
-                success: function(data) {
+                success: function (data) {
                     if (data.success) {
                         // Actualizar los campos del formulario con los datos del paciente
                         document.getElementById("paciente").value = data.paciente.nombre;
@@ -209,25 +221,26 @@
                         document.getElementById("fechaNacimiento").value = data.paciente.fecha_nacimiento;
                         document.getElementById("entidad").value = data.paciente.entidad;
                         document.getElementById("tipo").value = data.paciente.regimen;
-        
+
                         // Calcular y actualizar la edad si es necesario
                         calcularEdad();
                     } else {
                         alert('El paciente no está registrado en nuestra base de datos. Por favor, complete todos los campos del formulario. Utilizaremos esta información para generar automáticamente el encabezado de las próximas solicitudes.');
                     }
                 },
-                error: function(xhr, status, error) {
+                error: function (xhr, status, error) {
                     console.error('Error al buscar paciente:', error);
                 }
             });
         }
-        </script>
-            <script>
-                function limpiarCaracteres(event) {
-                    const input = event.target;
-                    // Elimina puntos y comas
-                    input.value = input.value.replace(/[.,]/g, '');
-                }
-            </script>
+    </script>
+    <script>
+        function limpiarCaracteres(event) {
+            const input = event.target;
+            // Elimina puntos y comas
+            input.value = input.value.replace(/[.,]/g, '');
+        }
+    </script>
 </body>
+
 </html>
