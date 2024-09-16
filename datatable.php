@@ -12,14 +12,24 @@
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <!-- Configuración en español para DataTables -->
     <script src="https://cdn.datatables.net/plug-ins/1.11.5/i18n/Spanish.json"></script>
+    <!-- Incluye jQuery Editable -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-jeditable/1.7.3/jquery.jeditable.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f8ff;
-            color: #333;
-            background-image: url('http://192.168.1.250:8080/devolucion_farmacia/img/fondo-medico-azul.png');
-            box-shadow: #333;
-        }
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.1), 
+        rgba(0, 0, 0, 0.1)
+    ), url('http://192.168.1.250:8080/devolucion_farmacia/img/fondo-medico-azul.png') no-repeat center center fixed;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+}
         .container {
             width: 90%;
             margin: 40px auto;
@@ -64,6 +74,44 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
+        .actions button {
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 18px;
+            margin: 0 5px;
+        }
+        .edit-link {
+    text-decoration: none;
+}
+
+.edit-button {
+    background-color: rgb(37, 179, 24); /* Color verde */
+    color: white; /* Color del texto */
+    border: none;
+    padding: 10px 20px; /* Tamaño del botón */
+    font-size: 16px; /* Tamaño del texto */
+    border-radius: 5px; /* Bordes redondeados */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: background-color 0.3s; /* Transición suave para el color */
+    justify-content: center;
+}
+
+.edit-button:hover {
+    background-color: #007BFF; /* Color verde más oscuro al pasar el ratón */
+color: white;}
+
+.edit-button i {
+    color: #333;
+    margin-right: 5px; /* Espacio entre el ícono y el texto */
+}
+
+.edit-button i:hover {
+    color: #ffffff;
+    margin-right: 8px; /* Espacio entre el ícono y el texto */
+}
+
+        
     </style>
 </head>
 <body>
@@ -80,6 +128,7 @@
                     <th>Fecha de Nacimiento</th>
                     <th>Entidad</th>
                     <th>Régimen</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -114,10 +163,18 @@
                                 <td>{$row['fecha_nacimiento']}</td>
                                 <td>{$row['entidad']}</td>
                                 <td>{$row['regimen']}</td>
+<td class='actions'>
+    <a href='view_edit.php?id={$row['id']}' class='edit-link'>
+        <button class='edit-button' title='Editar'>
+            <i class='fas fa-edit'></i>
+        </button>
+    </a>
+</td>
+
                               </tr>";
                     }
                 } else {
-                    echo "<tr><td colspan='8'>No se encontraron registros</td></tr>";
+                    echo "<tr><td colspan='9'>No se encontraron registros</td></tr>";
                 }
                 
                 $conn->close();
@@ -126,7 +183,7 @@
         </table>
     </div>
 
-    <!-- Inicializa DataTables -->
+    <!-- Inicializa DataTables y jEditable -->
     <script>
         $(document).ready(function() {
             $('#tablaPacientes').DataTable({
@@ -136,6 +193,12 @@
                 "order": [[0, "desc"]]
             });
         });
+
+        function deleteRecord(id) {
+            if (confirm('¿Estás seguro de que deseas eliminar este registro?')) {
+                window.location.href = 'delete_record.php?id=' + id;
+            }
+        }
     </script>
 </body>
 </html>
