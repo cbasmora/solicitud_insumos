@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 }
 
 // Consulta para obtener los insumos
-$sql = "SELECT nombre_insumo FROM insumos";
+$sql = "SELECT nombre_insumo FROM insumos WHERE suspendido = 0";
 $result = $conn->query($sql);
 
 // Crear un array para almacenar los resultados

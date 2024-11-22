@@ -99,7 +99,7 @@ class PDF extends FPDF
         // Datos del paciente
         $this->SetFont('Arial', 'B', 10);
         $this->Cell(30, 5, 'Paciente:', 1, 0, 'L', true); // Título Paciente con fondo azul
-        $this->SetFont('Arial', '', 10);
+        $this->SetFont('Arial', '', 8);
         $this->Cell(69, 5, $data['paciente'], 1); // Paciente
         $this->SetFont('Arial', 'B', 10);
         $this->Cell(30, 5, 'Identificación:', 1, 0, 'L', true); // Título Documento con fondo azul
@@ -393,7 +393,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Genera el PDF
-    $pdf = new PDF();
+    $pdf = new PDF('P', 'mm', 'Letter');
     $pdf->AddPage();
     $pdf->SetFont('Arial', '', 12);
     $pdf->PrintForm($data); // Imprime el formulario con los datos procesados

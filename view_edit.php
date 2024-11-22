@@ -106,6 +106,9 @@ $conn->close();
                 <option value="Particular" <?php echo $paciente['regimen'] == 'Particular' ? 'selected' : ''; ?>>Particular</option>
                 <option value="Otro" <?php echo $paciente['regimen'] == 'Otro' ? 'selected' : ''; ?>>Otro</option>
             </select>
+            <label for="alergias">Alergias:</label>
+            <input type="text" id="alergias" name="alergias" value="<?php echo $paciente['alergias']; ?>">
+            <br>
             <br>
             
             <button type="submit" class="btn-update">Actualizar</button>

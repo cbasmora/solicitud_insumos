@@ -24,6 +24,7 @@ $numero_documento = $_POST['numero_documento'];
 $fecha_nacimiento = $_POST['fecha_nacimiento'];
 $entidad = $_POST['entidad'];
 $regimen = $_POST['regimen'];
+$alergias = $_POST['alergias'];
 
 // Actualizar los datos en la base de datos
 $sql = "UPDATE pacientes SET 
@@ -33,7 +34,8 @@ $sql = "UPDATE pacientes SET
             numero_documento='$numero_documento', 
             fecha_nacimiento='$fecha_nacimiento', 
             entidad='$entidad', 
-            regimen='$regimen' 
+            regimen='$regimen',
+            alergias='$alergias' 
         WHERE id=$id";
 
 if ($conn->query($sql) === TRUE) {
